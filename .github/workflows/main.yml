@@ -25,9 +25,13 @@ jobs:
       with:
         node-version: '12.x'
 
-    - name: install packages
-      run: npm install
+    # - name: install packages
+    #  run: npm install
+    
+    - name: Get the version
+      id: get_version
+      run: echo ::set-output name=VERSION::${GITHUB_REF#refs/tags/}
     
     - name: testing 
-      run: echo $GITHUB_REF
+      run: echo ${{ steps.get_version.outputs.VERSION }}
         
