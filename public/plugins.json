@@ -1,0 +1,13 @@
+[
+  {
+    "name": "plugin-test1",
+    "version": "0.0.0",
+    "class": "Test1Plugin",
+    "requires": [
+      {
+        "@twilio/flex-ui": "^1"
+      }
+    ],
+    "src": "http://localhost:3000/plugin-test1.js"
+  }
+]
