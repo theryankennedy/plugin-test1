@@ -1,27 +1,15 @@
 name: CI
 
-# Controls when the action will run. 
 on:
   release:
     types: 
       - created
-
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "build"
-  build:
-    # The type of runner that the job will run on
+  release:
     runs-on: ubuntu-latest
-
-    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-    # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-    - uses: actions/checkout@v2
-    - env: 
-        PLUGIN_NAME: test1
-        PLUGIN_PROJECT_NAME: plugin-test1
-        RUNTIME_DOMAIN: default-1074-nbd21.twil.io
-    
+    - uses: actions/checkout@v2    
+      
     - name: Setup Node.js for use with actions
       uses: actions/setup-node@v1.1.0
       with:
@@ -42,6 +30,10 @@ jobs:
       
     - name: set that there is a new version in the plugins api
       uses: wei/curl@v1.1.1
+      env: 
+        PLUGIN_NAME: test1
+        PLUGIN_PROJECT_NAME: plugin-test1
+        RUNTIME_DOMAIN: default-1074-nbd21.twil.io
       with:
         args: https://flex-api.twilio.com/v1/PluginService/Plugins/$env.PLUGIN_NAME/Versions -d Version=${{ steps.get_version.outputs.VERSION }} -d PluginUrl="https://$env.RUNTIME_DOMAIN/plugins/$env.PLUGIN_PROJECT_NAME/${{ steps.get_version.outputs.VERSION }}/bundle.js" -d Changelog="here's my version" -d Private=true -u $secrets.TWILIO_ACCOUNT_SID:$secrets.TWILIO_AUTH_TOKEN
         
