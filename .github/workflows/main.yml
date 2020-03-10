@@ -26,6 +26,9 @@ jobs:
       run: echo ${{ steps.get_version.outputs.VERSION }}
       
     - name: upload the build file to twilio to host
+      env:
+        TWILIO_ACCOUNT_SID: $secrets.TWILIO_ACCOUNT_SID
+        TWILIO_AUTH_TOKEN: $secrets.TWILIO_AUTH_TOKEN
       run: npm run deploy custom ${{ steps.get_version.outputs.VERSION }} -- --pilot-plugins-api
       
     - name: set that there is a new version in the plugins api
