@@ -29,7 +29,7 @@ jobs:
       env:
         TWILIO_ACCOUNT_SID: $secrets.TWILIO_ACCOUNT_SID
         TWILIO_AUTH_TOKEN: $secrets.TWILIO_AUTH_TOKEN
-      run: TWILIO_ACCOUNT_SID=$secrets.TWILIO_ACCOUNT_SID TWILIO_AUTH_TOKEN=$secrets.TWILIO_AUTH_TOKEN CI=true npm run deploy custom ${{ steps.get_version.outputs.VERSION }} -- --pilot-plugins-api
+      run: TWILIO_ACCOUNT_SID=AC0e3b19b3ae25d5def9dcd115ecd38f67 TWILIO_AUTH_TOKEN=8827543318ca478821986272c3037e72 CI=true npm run deploy custom ${{ steps.get_version.outputs.VERSION }} -- --pilot-plugins-api
       
     - name: set that there is a new version in the plugins api
       uses: wei/curl@v1.1.1
