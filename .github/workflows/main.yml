@@ -29,11 +29,9 @@ jobs:
       run: TWILIO_ACCOUNT_SID=${{ secrets.TWILIO_ACCOUNT_SID }} TWILIO_AUTH_TOKEN=${{ secrets.TWILIO_AUTH_TOKEN }} CI=true npm run deploy custom ${{ steps.get_version.outputs.VERSION }} -- --pilot-plugins-api
       
     - name: set that there is a new version in the plugins api
-      uses: wei/curl@v1.1.1
       env: 
         PLUGIN_NAME: test1
         PLUGIN_PROJECT_NAME: plugin-test1
         RUNTIME_DOMAIN: default-1074-nbd21.twil.io
-      with:
-        args: https://flex-api.twilio.com/v1/PluginService/Plugins/${{ env.PLUGIN_NAME }}/Versions -d Version=${{ steps.get_version.outputs.VERSION }} -d PluginUrl="https://${{ env.RUNTIME_DOMAIN }}/plugins/${{ env.PLUGIN_PROJECT_NAME }}/${{ steps.get_version.outputs.VERSION }}/bundle.js" -d Changelog="heres my version" -d Private=true -u ${{ secrets.TWILIO_ACCOUNT_SID }}:${{ secrets.TWILIO_AUTH_TOKEN }}
+      run: curl -X POST https://flex-api.twilio.com/v1/PluginService/Plugins/${{ env.PLUGIN_NAME }}/Versions -d Version=${{ steps.get_version.outputs.VERSION }} -d PluginUrl="https://${{ env.RUNTIME_DOMAIN }}/plugins/${{ env.PLUGIN_PROJECT_NAME }}/${{ steps.get_version.outputs.VERSION }}/bundle.js" -d Changelog="heres my version" -d Private=true -u ${{ secrets.TWILIO_ACCOUNT_SID }}:${{ secrets.TWILIO_AUTH_TOKEN }}
         
