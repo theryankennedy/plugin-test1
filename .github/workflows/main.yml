@@ -35,5 +35,5 @@ jobs:
         PLUGIN_PROJECT_NAME: plugin-test1
         RUNTIME_DOMAIN: default-1074-nbd21.twil.io
       with:
-        args: https://flex-api.twilio.com/v1/PluginService/Plugins/${{ env.PLUGIN_NAME }}/Versions -d Version=${{ steps.get_version.outputs.VERSION }} -d PluginUrl="https://${{ env.RUNTIME_DOMAIN }}/plugins/${{ env.PLUGIN_PROJECT_NAME }}/${{ steps.get_version.outputs.VERSION }}/bundle.js" -d Changelog="here's my version" -d Private=true -u ${{ secrets.TWILIO_ACCOUNT_SID }}:${{ secrets.TWILIO_AUTH_TOKEN }}
+        args: https://flex-api.twilio.com/v1/PluginService/Plugins/${{ env.PLUGIN_NAME }}/Versions -d Version=${{ steps.get_version.outputs.VERSION }} -d PluginUrl="https://${{ env.RUNTIME_DOMAIN }}/plugins/${{ env.PLUGIN_PROJECT_NAME }}/${{ steps.get_version.outputs.VERSION }}/bundle.js" -d Changelog="heres my version" -d Private=true -u ${{ secrets.TWILIO_ACCOUNT_SID }}:${{ secrets.TWILIO_AUTH_TOKEN }}
         
